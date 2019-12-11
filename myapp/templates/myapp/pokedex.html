@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {% load static %}
+        <link rel="stylesheet" href='{% static "myapp/style.css" %}'/>
+
+        <title>Quick's Pokedex</title>
+        <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Le Pokedex bien sympa :)</h1>
+            <ul id="pokedex">
+                {% for result in Names %}
+                <a href="{% url 'pokemon' result.number %}">
+                <li class="card">
+                    <h2 class="card-title">{{result.name}} - #{{result.number}}</h2> 
+                    <img class="card-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{result.number}}.png" />
+                </li>
+                </a>
+                    {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {% load static %}
+        <link rel="stylesheet" href='{% static "myapp/style.css" %}'/>
+
+        <title>Quick's Pokedex</title>
+        <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <a class="retourAccueil" href="{% url 'pokedex' %}">[ Pokedex ]</a>
+            <h1 class="name">{{Name}} #{{Id}}</h1>
+            <ul id="pokedex">
+                <li class="card">
+                    <button onclick="show_normal()"> Normal </button>
+                    <button onclick="show_shiny()"> Shiny </button> <br>
+                    <img id="non-shiny" class="card-image" src="{{Sprites}}" />
+                    <img id="shiny" class="card-image-hidden" src="{{SpritesShiny}}" />
+                    <div class="fiche">
+                        <div class="fiche-gauche">
+                                <p>Types : </p>
+                                {% for type in types %}
+            
+                                <p class="type">  ► {{type.type.name}} </p>
+            
+                                {% endfor %}
+                        </div>
+                        <div class=fiche-centre>
+                                <p>Taille : {{Taille}} m</p> 
+                                <p>Poids : {{Poids}} kg</p>
+                        </div>  
+                        <div class=fiche-droite>
+                            <p class="titleStat">Stats : </p>
+                                {% for stat in stats %}
+                                    <p class="nameStat"> {{ stat.stat.name }} : </p>
+                                    <p class="baseStat"> {{stat.base_stat }} </p> <br>
+
+                                {% endfor %}
+                                
+                        </div> 
+                    </div>   
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
+<script>
+    function show_normal(){
+        document.getElementById("shiny").style.display = 'none';
+        document.getElementById("non-shiny").style.display = '';
+    }
+    function show_shiny(){
+        document.getElementById("shiny").style.display = 'inline';
+        document.getElementById("non-shiny").style.display = 'none';
+    }
+</script>
