@@ -1,0 +1,2 @@
+# pokedexDjango
+Pokedex bien sympa
